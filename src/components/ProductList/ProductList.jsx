@@ -66,6 +66,7 @@ const ProductList = () => {
 			totalPrice: getTotalPrice(addedItems),
 			queryId,
 		};
+        console.log(data);
 		fetch('http://localhost:8000/web-data', {
 			method: 'POST',
 			headers: {
