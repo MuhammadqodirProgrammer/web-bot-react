@@ -5,49 +5,8 @@ import { useTelegram } from '../../hooks/useTelegram';
 import { useCallback, useEffect } from 'react';
 
 const products = [
-	{ id: '1', title: 'Jinslar', price: 5000, description: "ko'k, tekis" },
-	{
-		id: '2',
-		title: 'Kurtka',
-		price: 12000,
-		description: 'Yashil, issiq',
-	},
-	{
-		id: '3',
-		title: 'Jinslar 2',
-		price: 5000,
-		description: 'Yashil, issiq',
-	},
-	{
-		id: '4',
-		title: 'Kurtka 8',
-		price: 122,
-		description: 'Yashil, issiq',
-	},
-	{
-		id: '5',
-		title: 'Jinslar 3',
-		price: 5000,
-		description: 'Yashil, issiq',
-	},
-	{
-		id: '6',
-		title: 'Kurtka 7',
-		price: 600,
-		description: 'Yashil, issiq',
-	},
-	{
-		id: '7',
-		title: 'Jinslar 4',
-		price: 5500,
-		description: 'Yashil, issiq',
-	},
-	{
-		id: '8',
-		title: 'Kurtka 5',
-		price: 12000,
-		description: 'Yashil, issiq',
-	},
+	{ id: '1', name: 'eshmat clinck', img: "https://qtxasset.com/quartz/qcloud5/media/image/fiercehealthcare/1598464584/Mayo%20Clinic%20logo.jpg/Mayo%20Clinic%20logo.jpg?VersionId=jVFvD2Xe_AYZKxIPgig..j8eMTZ9ijsA", phone: "940850818",location:"Tashket",workingDays: "du chor ju", workingHours:"10:00-18:00" },
+
 ];
 
 const getTotalPrice = (items = []) => {
@@ -108,7 +67,7 @@ const ProductList = () => {
 	return (
 		<div className={'list'}>
 			{products.map((item) => (
-				<ProductItem product={item} onAdd={onAdd} className={'item'} />
+				<ProductItem clinic={item} onAdd={onAdd} className={'item'} />
 			))}
 		</div>
 	);
