@@ -2,9 +2,11 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    gap: 15px;
 }
 
-.item {
-    margin-right: 10px;
-    margin-bottom: 10px;
-}
+/* .item {
+  padding: 15px;
+  border-radius: 15px;
+
+} */
