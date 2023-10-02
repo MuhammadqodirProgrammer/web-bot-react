@@ -15,7 +15,7 @@ function App() {
     }, [])
 
     return (
-        <div className="App bg-red-600  ">
+        <div className="App w-[100%] px-[10px] ">
             <Header />
             <Routes>
                 <Route path='/' element={<ProductList />}/>

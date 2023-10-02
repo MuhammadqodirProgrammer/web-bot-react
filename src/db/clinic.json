@@ -1,0 +1,154 @@
+
+  {
+    "id":"1",
+    "email": "admin@gmail.com",
+    "password": "pas",
+    "phone": "998940850818",
+    "name": "Eshmat clicic1",
+    "img":"https://picsum.photos/id/237/200/300",
+    "location": "amsterdam",
+    "workingDays":"Du Sha",
+    "workingHours": "10:00-18:00",
+    "status": true,
+    "clinicDoctors": [
+     {
+ "id":"uuid", 
+        "email": "admin@gmail.com",
+        "password": "pas",
+        "phone": "998940850818",
+        "img":"https://picsum.photos/id/237/200/300",
+        "location": "amsterdam",
+        "workingDays":"Du Sha",
+        "workingHours": "10:00-18:00",
+        "status": true,
+        "fullName": "fullName",
+          "doctorOrders": [
+           {
+            "cost": "100",
+              "scheduledDay": "dushanba",
+              "scheduledHour": "12:00",
+              "clinicID": "uuid",
+              "doctorID": "uuid",
+              "patientID": "uuid"
+           }
+          ],
+          "doctorSkills": "lor",
+          "salary": "2000"
+     },
+     {
+        "id":"uuid", 
+               "email": "admin@gmail.com",
+               "password": "pas",
+               "phone": "998940850818",
+               "img":"https://picsum.photos/id/237/200/300",
+               "location": "amsterdam",
+               "workingDays":"Du Sha",
+               "workingHours": "10:00-18:00",
+               "status": true,
+               "fullName": "fullName",
+                 "doctorOrders": [
+                  {
+                   "cost": "100",
+                     "scheduledDay": "dushanba",
+                     "scheduledHour": "12:00",
+                     "clinicID": "uuid",
+                     "doctorID": "uuid",
+                     "patientID": "uuid"
+                  }
+                 ],
+                 "doctorSkills": "lor",
+                 "salary": "2000"
+     },
+     {
+      "id":"uuid", 
+             "email": "admin@gmail.com",
+             "password": "pas",
+             "phone": "998940850818",
+             "img":"https://picsum.photos/id/237/200/300",
+             "location": "amsterdam",
+             "workingDays":"Du Sha",
+             "workingHours": "10:00-18:00",
+             "status": true,
+             "fullName": "fullName",
+               "doctorOrders": [
+                {
+                 "cost": "100",
+                   "scheduledDay": "dushanba",
+                   "scheduledHour": "12:00",
+                   "clinicID": "uuid",
+                   "doctorID": "uuid",
+                   "patientID": "uuid"
+                }
+               ],
+               "doctorSkills": "lor",
+               "salary": "2000"
+   },
+   {
+    "id":"uuid", 
+           "email": "admin@gmail.com",
+           "password": "pas",
+           "phone": "998940850818",
+           "img":"https://picsum.photos/id/237/200/300",
+           "location": "amsterdam",
+           "workingDays":"Du Sha",
+           "workingHours": "10:00-18:00",
+           "status": true,
+           "fullName": "fullName",
+             "doctorOrders": [
+              {
+               "cost": "100",
+                 "scheduledDay": "dushanba",
+                 "scheduledHour": "12:00",
+                 "clinicID": "uuid",
+                 "doctorID": "uuid",
+                 "patientID": "uuid"
+              }
+             ],
+             "doctorSkills": "lor",
+             "salary": "2000"
+ }
+    ],
+    "clinicServices": [
+        {
+            "cost": "100",
+        "name": "Lor",
+        "img":"https://picsum.photos/id/237/200/300"
+        }
+    ],
+    "clinicOrders": [
+   {
+    "cost": "100",
+    "scheduledDay": "dushanba",
+    "scheduledHour": "12:00",
+    "clinicID": "uuid",
+    "doctorID": "uuid",
+    "patientID": "uuid"
+   }
+    ],
+    "clinicPharmacyOrders": [
+    {
+        "cost": "100",
+        "clinicID": "uuid",
+        "patientID": "uuid"
+    }
+
+    ],
+    "clinicPharmacy": {
+        "phone": "998940850818",
+        "img":"https://picsum.photos/id/237/200/300",
+        "location": "amsterdam",
+        "workingDays":"Du Sha",
+        "workingHours": "10:00-18:00",
+        "status": true,
+        "name": "fullName",
+        "clinicId":"uuid",
+        "pharmacyPills": [
+          {
+            "cost": "100",
+            "name": "Eshmat clicic",
+            "img":"https://picsum.photos/id/237/200/300",
+            "total": 20
+          }
+          ]
+    }
+  }

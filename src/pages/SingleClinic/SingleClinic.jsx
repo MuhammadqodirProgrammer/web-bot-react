@@ -4,31 +4,148 @@ import { useTelegram } from '../../hooks/useTelegram';
 import { useCallback, useEffect } from 'react';
 import { Outlet, useParams } from 'react-router-dom';
 
-const products = [
-	{ id: '1', name: 'eshmat clinck', img: "https://qtxasset.com/quartz/qcloud5/media/image/fiercehealthcare/1598464584/Mayo%20Clinic%20logo.jpg/Mayo%20Clinic%20logo.jpg?VersionId=jVFvD2Xe_AYZKxIPgig..j8eMTZ9ijsA", phone: "940850818",location:"Tashket",workingDays: "du chor ju", workingHours:"10:00-18:00" },
-	{ id: '2', name: 'Shifo clinck', img: "https://qtxasset.com/quartz/qcloud5/media/image/fiercehealthcare/1598464584/Mayo%20Clinic%20logo.jpg/Mayo%20Clinic%20logo.jpg?VersionId=jVFvD2Xe_AYZKxIPgig..j8eMTZ9ijsA", phone: "940850818",location:"Tashket",workingDays: "du chor ju", workingHours:"10:00-18:00" },
+import { FaPhone } from 'react-icons/fa';
+import { FaCalendarWeek } from 'react-icons/fa';
+import { MdLocationPin } from 'react-icons/md';
+import { BiSolidTimeFive } from 'react-icons/bi';
 
-];
-
+import datamy from '../../db/clinic.json';
+import { Pagination } from '../../components/Pagination/Pagination';
 
 
 const SingleClinic = () => {
-	const [addedItems, setAddedItems] = useState([]);
+	const [activePage, setActivePage] = useState(1);
+  const [search, setSearch] = useState("");
+
+	// let api = `https://rickandmortyapi.com/api/character/?page=${activePage}&name=${search}&status=${status}`;
+	const [data, setData] = useState([]);
+	const { info, results } = data;
+	useEffect(() => {
+	  (async () => {
+		// const data2 = await fetch(api).then((res) => res.json());
+		setData(datamy);
+	  })();
+	// }, [api]);
+}, []);
+
+
+
 	const { tg, queryId } = useTelegram();
 
-const { id } = useParams()
+	const { id } = useParams();
 
-const clinic =products.find( el =>el.id ==id)
+	// const clinic = data.find((el) => el.id == id);
+const doctors =data?.clinicDoctors
+	console.log(data);
 
-console.log(clinic);
-
-console.log(id ,"id");
+	console.log(id, 'id');
 	return (
-		<section className=''>
-      
-			<div className="clinic_box">
-                <h1 className='text-red-600 text-9xl ' >hello</h1>
-            </div>
+		<section className='w-[100%]  mx-auto sm:w-[50%]'>
+			<div className='clinic_box'>
+				<h2 className=' text-center font-semibold my-[20px] text-[32px] '>
+					{' '}
+					Clicika haqida bavsil{' '}
+				</h2>
+
+				<div className='card  min-h-[300px] border-2 border-[teal] rounded-[8px] overflow-hidden  '>
+					<div className='card_top '>
+						<img
+							src={data?.img}
+							alt='img'
+							className='w-[100%] h-[230px] object-cover '
+						/>
+					</div>
+					<div className='card_body  py-[15px] px-[10px] '>
+						<h2 className=' text-[32px]  font-semibold mb-3 '>
+							{' '}
+							{data?.name}{' '}
+						</h2>
+						<div className='flex items-center mb-3  gap-x-[15px]'>
+							<FaPhone className=' w-[20px] h-[20px]  ' />
+							<p class=' font-normal text-[22px] dark:text-gray-400'>
+								Tel:{data?.phone}
+							</p>
+						</div>
+						<div className='flex items-center mb-3  gap-x-[15px]'>
+							<MdLocationPin className='w-[25px] h-[25px]   ' />
+							<p class=' font-normal text-[22px] dark:text-gray-400'>
+								{data?.location}
+							</p>
+						</div>
+						<div className='flex items-center mb-3  gap-x-[15px]'>
+							<FaCalendarWeek className=' w-[20px] h-[20px]  ' />
+							<p class=' font-normal text-[22px] dark:text-gray-400'>
+								{data?.workingDays}
+							</p>
+						</div>
+						<div className='flex items-center mb-3  gap-x-[15px]'>
+							<BiSolidTimeFive className=' w-[25px] h-[25px]  ' />
+							<p class=' font-normal text-[22px] dark:text-gray-400'>
+								{data?.workingHours}
+							</p>
+						</div>
+					</div>
+				</div>
+
+{/* clinic doctors */}
+
+<div className="  flex items-center gap-x-[20px] py-[20px] my-[20px] ">
+{
+	doctors?.length ? (
+		doctors.map(el => <div className='card  min-h-[300px] w-[250px] border-2 border-[teal] rounded-[8px] overflow-hidden  '>
+					<div className='card_top '>
+						<img
+							src={data?.img}
+							alt='img'
+							className='w-[100%] h-[230px] object-cover '
+						/>
+					</div>
+					<div className='card_body  py-[15px] px-[10px] '>
+						<h2 className=' text-[32px]  font-semibold mb-3 '>
+							{' '}
+							{data?.name}{' '}
+						</h2>
+						<div className='flex items-center mb-3  gap-x-[15px]'>
+							<FaPhone className=' w-[20px] h-[20px]  ' />
+							<p class=' font-normal text-[22px] dark:text-gray-400'>
+								Tel:{data?.phone}
+							</p>
+						</div>
+						<div className='flex items-center mb-3  gap-x-[15px]'>
+							<MdLocationPin className='w-[25px] h-[25px]   ' />
+							<p class=' font-normal text-[22px] dark:text-gray-400'>
+								{data?.location}
+							</p>
+						</div>
+						<div className='flex items-center mb-3  gap-x-[15px]'>
+							<FaCalendarWeek className=' w-[20px] h-[20px]  ' />
+							<p class=' font-normal text-[22px] dark:text-gray-400'>
+								{data?.workingDays}
+							</p>
+						</div>
+					
+					</div>
+				</div>)
+	) :" docrorlar yoq ☹"
+	
+}
+<Pagination
+        activePage={activePage}
+        setActivePage={setActivePage}
+        totalPage={5}
+      />
+</div>
+
+  
+
+			</div>
+
+
+
+
+
+
+
 		</section>
 	);
 };
