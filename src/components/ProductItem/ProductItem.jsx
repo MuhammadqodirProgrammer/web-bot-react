@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Button from "../Button/Button";
 import './ProductItem.css';
 
@@ -9,17 +10,19 @@ const ProductItem = ({clinic, className, onAdd}) => {
     }
 
     return (
-        <div className={'product ' + className}>
+        <div className={'clinic ' + className}>
           <img src={clinic?.img} alt="" className='img_clinic' />
 
             <div className={' '}>{clinic?.name}</div>
-            <div className={'description'}>{clinic?.phone}</div>
+            <div className={'description'}>Tel: {clinic?.phone}</div>
             <p >Joylashuv {clinic?.location}</p>
-            <p >ish kuni  {clinic?.workingDays}</p>
-            <p >ish vaqti  {clinic?.workingHours}</p>
-            <Button className={'add-btn'} onClick={onAddHandler}>
-                Karzinkaga q'oshish
-            </Button>
+            <p >Ish kuni  {clinic?.workingDays}</p>
+            <p >Ish vaqti  {clinic?.workingHours}</p>
+            <div className="flexer">
+         <Link to={`clinic/${clinic?.id}`} className="more  " >
+         More
+        </Link>
+            </div>
         </div>
     );
 };

@@ -1,11 +1,31 @@
-.product {
+.clinic {
     display: flex;
     flex-direction: column;
     border: 1px solid orange;
     padding: 15px;
     width: 170px;
+    text-decoration: none;
+    color: #fff;
+    border-radius: 8px;
 }
+.flexer{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.more{
+        padding: 10px 15px;
+        background: teal ;
+        color: #fff;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        display: block;
+        text-decoration: none;
+        border-radius: 12px;
+        margin-top: 15px;
 
+}
 
 .img_clinic {
     width: 100%;
