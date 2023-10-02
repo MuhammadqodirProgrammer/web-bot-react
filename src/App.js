@@ -6,6 +6,7 @@ import {Outlet, Route, Routes} from 'react-router-dom'
 import ProductList from "./components/ProductList/ProductList";
 import Form from "./components/Form/Form";
 import SingleClinic from './pages/SingleClinic/SingleClinic';
+import Admin from './pages/Admin/Admin';
 
 function App() {
     const {onToggleButton, tg} = useTelegram();
@@ -23,6 +24,7 @@ function App() {
 
 
                 <Route path={'form'} element={<Form />}/>
+                <Route path={'admin'} element={<Admin />}/>
             </Routes>
         </div>
     );
