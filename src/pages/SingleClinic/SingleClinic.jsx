@@ -9,6 +9,9 @@ import { FaCalendarWeek } from "react-icons/fa";
 import { MdLocationPin } from "react-icons/md";
 import { BiSolidTimeFive } from "react-icons/bi";
 
+// import doctorIcon from "../../../public/img/doctor.png"
+// import jobIcon from "../../../public/img/job.png"
+// import nmadirIcon from "../../../public/logo192.png"
 import datamy from "../../db/clinic.json";
 import { Pagination } from "../../components/Pagination/Pagination";
 
@@ -80,6 +83,7 @@ const SingleClinic = () => {
 
 			<div className="flex items-center mb-3  gap-x-[15px]">
               <BiSolidTimeFive className=" w-[25px] h-[25px]  " />
+			  {/* <img src={nmadirIcon} alt="doctor"  className=" w-[50px] h-[50px]  " /> */}
               <p class=" font-normal text-[22px] dark:text-gray-400">
 			  Count Of Doctors {data?.clinicDoctors?.length}
               </p>
