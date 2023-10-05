@@ -77,15 +77,35 @@ const SingleClinic = () => {
                 {data?.workingHours}
               </p>
             </div>
+
+			<div className="flex items-center mb-3  gap-x-[15px]">
+              <BiSolidTimeFive className=" w-[25px] h-[25px]  " />
+              <p class=" font-normal text-[22px] dark:text-gray-400">
+			  Count Of Doctors {data?.clinicDoctors?.length}
+              </p>
+            </div>
+
+			<div className="flex items-center mb-3  gap-x-[15px]">
+              <BiSolidTimeFive className=" w-[25px] h-[25px]  " />
+              <p class=" font-normal text-[22px] dark:text-gray-400">
+			  
+			  Count Of Services {data?.clinicServices?.length}
+              </p>
+            </div>
+			
+
           </div>
         </div>
 
         {/* clinic doctors */}
+		<h2 className=" text-center font-semibold my-[20px] text-[32px] ">
+         Our  Doctors
+        </h2>
 
 <div className="  flex items-center gap-[20px] py-[20px] my-[20px]  flex-wrap pb-[50px]  relative ">
 {
 	doctors?.length ? (
-		doctors.map(el => <div className='card  h-auto min-h-[300px] w-[250px] border-2 border-[teal] rounded-[8px] overflow-hidden  '>
+		doctors.map(el => <div className='card  h-auto min-h-[300px] w-[100%] border-2 border-[teal] rounded-[8px] overflow-hidden  '>
 					<div className='card_top '>
 						<img
 							src={el?.img}
@@ -107,13 +127,22 @@ const SingleClinic = () => {
 						<div className='flex items-center mb-3  gap-x-[15px]'>
 							<MdLocationPin className='w-[25px] h-[25px]   ' />
 							<p class=' font-normal text-[22px] dark:text-gray-400'>
-								{el?.doctorSkills}
+								{el?.location}
 							</p>
 						</div>
 						<div className='flex items-center mb-3  gap-x-[15px]'>
 							<FaCalendarWeek className=' w-[20px] h-[20px]  ' />
 							<p class=' font-normal text-[16px] dark:text-gray-400'>
 								{el?.workingDays} , {el?.workingHours} 
+							</p>
+						</div>
+						
+
+
+						<div className='flex items-center mb-3  gap-x-[15px]'>
+							<MdLocationPin className='w-[25px] h-[25px]   ' />
+							<p class=' font-normal text-[22px] dark:text-gray-400'>
+								{el?.doctorSkills} 
 							</p>
 						</div>
 					
