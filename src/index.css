@@ -6,3 +6,16 @@ body{
   background-color: rgb(19, 19, 52);
   color: #fff;
 }
+.pagination{
+  display: flex;
+  align-items: center;
+row-gap: 15px;
+position: absolute;
+bottom: -3%;
+/* right:  0%; */
+margin: 0 auto;
+/* left: 0%; */
+/* transform: translate(-50%, -50%); */
+
+
+}

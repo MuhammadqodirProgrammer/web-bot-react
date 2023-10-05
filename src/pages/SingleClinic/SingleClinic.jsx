@@ -89,38 +89,38 @@ const doctors =data?.clinicDoctors
 
 {/* clinic doctors */}
 
-<div className="  flex items-center gap-x-[20px] py-[20px] my-[20px] ">
+<div className="  flex items-center gap-[20px] py-[20px] my-[20px]  flex-wrap pb-[50px]  relative ">
 {
 	doctors?.length ? (
-		doctors.map(el => <div className='card  min-h-[300px] w-[250px] border-2 border-[teal] rounded-[8px] overflow-hidden  '>
+		doctors.map(el => <div className='card  h-auto min-h-[300px] w-[250px] border-2 border-[teal] rounded-[8px] overflow-hidden  '>
 					<div className='card_top '>
 						<img
-							src={data?.img}
+							src={el?.img}
 							alt='img'
 							className='w-[100%] h-[230px] object-cover '
 						/>
 					</div>
 					<div className='card_body  py-[15px] px-[10px] '>
-						<h2 className=' text-[32px]  font-semibold mb-3 '>
+						<h2 className=' text-[22px]  font-semibold mb-3 '>
 							{' '}
-							{data?.name}{' '}
+							{el?.fullName}{' '}
 						</h2>
 						<div className='flex items-center mb-3  gap-x-[15px]'>
 							<FaPhone className=' w-[20px] h-[20px]  ' />
-							<p class=' font-normal text-[22px] dark:text-gray-400'>
-								Tel:{data?.phone}
+							<p class=' font-normal text-[16px] dark:text-gray-400'>
+								{el?.phone}
 							</p>
 						</div>
 						<div className='flex items-center mb-3  gap-x-[15px]'>
 							<MdLocationPin className='w-[25px] h-[25px]   ' />
 							<p class=' font-normal text-[22px] dark:text-gray-400'>
-								{data?.location}
+								{el?.doctorSkills}
 							</p>
 						</div>
 						<div className='flex items-center mb-3  gap-x-[15px]'>
 							<FaCalendarWeek className=' w-[20px] h-[20px]  ' />
-							<p class=' font-normal text-[22px] dark:text-gray-400'>
-								{data?.workingDays}
+							<p class=' font-normal text-[16px] dark:text-gray-400'>
+								{el?.workingDays} , {el?.workingHours} 
 							</p>
 						</div>
 					
@@ -133,6 +133,7 @@ const doctors =data?.clinicDoctors
         activePage={activePage}
         setActivePage={setActivePage}
         totalPage={5}
+		
       />
 </div>
 
