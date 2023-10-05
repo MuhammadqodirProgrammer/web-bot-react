@@ -54,7 +54,7 @@ const Form = () => {
         <div className={"form"}>
             <h3>Malumotlaringizni kiriting</h3>
             <input
-                className={'input'}
+                className={'input text-black'}
                 type="text"
                 placeholder={'Davlat'}
                 value={country}
