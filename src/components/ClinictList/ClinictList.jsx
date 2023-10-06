@@ -98,7 +98,7 @@ const ClinictList = () => {
 
 
 
-<div className="  flex items-center gap-[20px] py-[20px] my-[20px]  flex-wrap pb-[50px]  relative ">
+<div className="  flex items-center  justify-center gap-[20px] py-[20px] my-[20px]  flex-wrap pb-[50px]  relative ">
 {
 	products?.length ? (
 		products.map(el =><div className=" min-w-[45%]  min-h-[300px] border-2 border-[teal] rounded-[8px] overflow-hidden  ">
