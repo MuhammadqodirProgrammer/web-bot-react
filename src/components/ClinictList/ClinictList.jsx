@@ -1,9 +1,24 @@
 import React, { useState } from 'react';
-import './ClinictList.css';
+import './ClinictList.scss';
 import ProductItem from '../ProductItem/ProductItem';
 import { useTelegram } from '../../hooks/useTelegram';
 import { useCallback, useEffect } from 'react';
-import { Outlet } from 'react-router-dom';
+import { Pagination } from '../Pagination/Pagination';
+import { Outlet, useParams } from "react-router-dom";
+
+import { FaPhone } from "react-icons/fa";
+import { FaCalendarWeek } from "react-icons/fa";
+import { MdLocationPin } from "react-icons/md";
+import { BiSolidTimeFive } from "react-icons/bi";
+
+import jobIcon from "../../assets/images/job.png"
+import doctorIcon from "../../assets/images/doctor2.png"
+import serviceIcon from "../../assets/images/service.png"
+import datamy from "../../db/clinic.json";
+
+
+
+
 
 const products = [
 	{ id: '1', name: 'eshmat clinck', img: "https://qtxasset.com/quartz/qcloud5/media/image/fiercehealthcare/1598464584/Mayo%20Clinic%20logo.jpg/Mayo%20Clinic%20logo.jpg?VersionId=jVFvD2Xe_AYZKxIPgig..j8eMTZ9ijsA", phone: "940850818",location:"Tashket",workingDays: "du chor ju", workingHours:"10:00-18:00" },
@@ -19,6 +34,8 @@ const getTotalPrice = (items = []) => {
 
 const ClinictList = () => {
 	const [addedItems, setAddedItems] = useState([]);
+	const [activePage, setActivePage] = useState(1);
+
 	const { tg, queryId } = useTelegram();
 
 	const onSendData = useCallback(() => {
@@ -67,10 +84,106 @@ const ClinictList = () => {
 	};
 
 	return (
-		<div className={'list'}>
-			{products.map((item) => (
+		<div className={'w-[100%]  mx-auto sm:w-[50%]  '}>
+
+
+
+
+
+<h2 className=" text-center font-semibold my-[20px] text-[32px] ">
+          Our clinics
+        </h2>
+
+        
+
+
+
+
+<div className="  flex items-center gap-[20px] py-[20px] my-[20px]  flex-wrap pb-[50px]  relative ">
+{
+	products?.length ? (
+		products.map(el =><div className="card  min-h-[300px] border-2 border-[teal] rounded-[8px] overflow-hidden  ">
+          <div className="card_top ">
+            <img
+              src={el?.img}
+              alt="img"
+              className="w-[100%] h-[230px] object-cover "
+            />
+          </div>
+          <div className="card_body  py-[15px] px-[10px] ">
+            <h2 className=" text-[32px]  font-semibold mb-3 ">{el?.name}</h2>
+            <div className="flex items-center mb-3  gap-x-[15px]">
+              <FaPhone className=" w-[20px] h-[20px]  " />
+              <p class=" font-normal text-[22px] dark:text-gray-400">
+                Tel:{el?.phone}
+              </p>
+            </div>
+            <div className="flex items-center mb-3  gap-x-[15px]">
+              <MdLocationPin className="w-[25px] h-[25px]   " />
+              <p class=" font-normal text-[22px] dark:text-gray-400">
+                {el?.location}
+              </p>
+            </div>
+            <div className="flex items-center mb-3  gap-x-[15px]">
+              <FaCalendarWeek className=" w-[20px] h-[20px]  " />
+              <p class=" font-normal text-[22px] dark:text-gray-400">
+                {el?.workingDays}
+              </p>
+            </div>
+            <div className="flex items-center mb-3  gap-x-[15px]">
+              <BiSolidTimeFive className=" w-[25px] h-[25px]  " />
+              <p class=" font-normal text-[22px] dark:text-gray-400">
+                {el?.workingHours}
+              </p>
+            </div>
+
+			<div className="flex items-center mb-3  gap-x-[15px]">
+              {/* <BiSolidTimeFive className=" w-[25px] h-[25px]  " /> */}
+			  <img src={doctorIcon} alt="doctor"  className=" w-[25px] h-[25px]  img_filter" />
+              <p class=" font-normal text-[22px] dark:text-gray-400">
+			  Count Of Doctors {el?.clinicDoctors?.length}
+              </p>
+            </div>
+
+			<div className="flex items-center mb-3  gap-x-[15px]">
+			<img src={serviceIcon} alt="doctor"  className=" w-[25px] h-[25px]  img_filter" />
+
+              <p class=" font-normal text-[22px] dark:text-gray-400">
+			  
+			  Count Of Services {el?.clinicServices?.length}
+              </p>
+            </div>
+			
+
+          </div>
+        </div> )
+	) :" no services ☹"
+	
+}
+<Pagination
+        activePage={activePage}
+        setActivePage={setActivePage}
+        totalPage={5}
+		
+      />
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+			{/* {products.map((item) => (
 				<ProductItem clinic={item} onAdd={onAdd} className={'item'} />
-			))}
+			))} */}
 			<Outlet/>
 			
 		</div>

@@ -7,8 +7,8 @@ const Header = () => {
     const {user, onClose} = useTelegram();
 
     return (
-        <div className={'header'}>
-            <Button onClick={onClose}>Yopish</Button>
+        <div className={' flex items-center justify-between my-[10px]'}>
+            <Button onClick={onClose}>Close</Button>
             <span className={'username'}>
                 {user?.username}
             </span>
