@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-import './ClinictList.scss';
 import ProductItem from '../ProductItem/ProductItem';
 import { useTelegram } from '../../hooks/useTelegram';
 import { useCallback, useEffect } from 'react';
 import { Pagination } from '../Pagination/Pagination';
-import { Outlet, useParams } from "react-router-dom";
+import { Link, Outlet, useParams } from "react-router-dom";
 
 import { FaPhone } from "react-icons/fa";
 import { FaCalendarWeek } from "react-icons/fa";
@@ -102,7 +101,7 @@ const ClinictList = () => {
 <div className="  flex items-center gap-[20px] py-[20px] my-[20px]  flex-wrap pb-[50px]  relative ">
 {
 	products?.length ? (
-		products.map(el =><div className="card  min-h-[300px] border-2 border-[teal] rounded-[8px] overflow-hidden  ">
+		products.map(el =><div className=" min-w-[45%]  min-h-[300px] border-2 border-[teal] rounded-[8px] overflow-hidden  ">
           <div className="card_top ">
             <img
               src={el?.img}
@@ -137,24 +136,11 @@ const ClinictList = () => {
               </p>
             </div>
 
-			<div className="flex items-center mb-3  gap-x-[15px]">
-              {/* <BiSolidTimeFive className=" w-[25px] h-[25px]  " /> */}
-			  <img src={doctorIcon} alt="doctor"  className=" w-[25px] h-[25px]  img_filter" />
-              <p class=" font-normal text-[22px] dark:text-gray-400">
-			  Count Of Doctors {el?.clinicDoctors?.length}
-              </p>
-            </div>
-
-			<div className="flex items-center mb-3  gap-x-[15px]">
-			<img src={serviceIcon} alt="doctor"  className=" w-[25px] h-[25px]  img_filter" />
-
-              <p class=" font-normal text-[22px] dark:text-gray-400">
-			  
-			  Count Of Services {el?.clinicServices?.length}
-              </p>
-            </div>
+		
 			
-
+			<Link to={`clinic/${el?.id}`} className="more text-center  " >
+         More
+        </Link>
           </div>
         </div> )
 	) :" no services ☹"
