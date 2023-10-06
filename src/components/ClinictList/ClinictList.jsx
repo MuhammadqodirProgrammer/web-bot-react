@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './ProductList.css';
+import './ClinictList.css';
 import ProductItem from '../ProductItem/ProductItem';
 import { useTelegram } from '../../hooks/useTelegram';
 import { useCallback, useEffect } from 'react';
@@ -17,7 +17,7 @@ const getTotalPrice = (items = []) => {
 	}, 0);
 };
 
-const ProductList = () => {
+const ClinictList = () => {
 	const [addedItems, setAddedItems] = useState([]);
 	const { tg, queryId } = useTelegram();
 
@@ -77,4 +77,4 @@ const ProductList = () => {
 	);
 };
 
-export default ProductList;
+export default ClinictList;
