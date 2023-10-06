@@ -8,6 +8,7 @@ import SingleClinic from "./pages/SingleClinic/SingleClinic";
 import Clinic from "./pages/Clinic/Clinic";
 import Admin from "./pages/Admin/Admin";
 import ClinictList from "./components/ClinictList/ClinictList";
+import SingleService from "./pages/SingleService/SingleService";
 
 function App() {
   const { onToggleButton, tg } = useTelegram();
@@ -21,7 +22,8 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<ClinictList />} />
-        <Route path="clinic/:id" element={<SingleClinic />} />
+        <Route path="clinic/:clinic_id" element={<SingleClinic />} />
+        <Route path="clinic/:id/service/:service_id" element={<SingleService />} />
         <Route path="clinic" element={<Clinic />} />
         <Route path={"admin"} element={<Admin />} />
 

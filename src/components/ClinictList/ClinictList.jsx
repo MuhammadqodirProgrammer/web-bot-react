@@ -15,10 +15,6 @@ import doctorIcon from "../../assets/images/doctor2.png"
 import serviceIcon from "../../assets/images/service.png"
 import datamy from "../../db/clinic.json";
 
-
-
-
-
 const products = [
 	{ id: '1', name: 'eshmat clinck', img: "https://qtxasset.com/quartz/qcloud5/media/image/fiercehealthcare/1598464584/Mayo%20Clinic%20logo.jpg/Mayo%20Clinic%20logo.jpg?VersionId=jVFvD2Xe_AYZKxIPgig..j8eMTZ9ijsA", phone: "940850818",location:"Tashket",workingDays: "du chor ju", workingHours:"10:00-18:00" },
 	{ id: '2', name: 'Shifo clinck', img: "https://qtxasset.com/quartz/qcloud5/media/image/fiercehealthcare/1598464584/Mayo%20Clinic%20logo.jpg/Mayo%20Clinic%20logo.jpg?VersionId=jVFvD2Xe_AYZKxIPgig..j8eMTZ9ijsA", phone: "940850818",location:"Tashket",workingDays: "du chor ju", workingHours:"10:00-18:00" },
@@ -32,8 +28,8 @@ const getTotalPrice = (items = []) => {
 };
 
 const ClinictList = () => {
-	const [addedItems, setAddedItems] = useState([]);
 	const [activePage, setActivePage] = useState(1);
+	const [addedItems, setAddedItems] = useState([]);
 
 	const { tg, queryId } = useTelegram();
 

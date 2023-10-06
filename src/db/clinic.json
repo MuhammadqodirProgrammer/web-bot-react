@@ -110,6 +110,7 @@
     ],
     "clinicServices": [
         {
+          "id":1,
             "cost": "100",
         "name": "Lor",
         "img":"https://picsum.photos/id/237/200/300"
