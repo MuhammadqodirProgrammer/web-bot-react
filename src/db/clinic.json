@@ -12,7 +12,7 @@
     "status": true,
     "clinicDoctors": [
      {
- "id":"uuid", 
+ "id":"uuid1", 
         "email": "admin@gmail.com",
         "password": "pas",
         "phone": "998940850818",
@@ -36,7 +36,7 @@
           "salary": "2000"
      },
      {
-        "id":"uuid", 
+        "id":"uuid2", 
                "email": "admin@gmail.com",
                "password": "pas",
                "phone": "998940850818",
@@ -60,7 +60,7 @@
                  "salary": "2000"
      },
      {
-      "id":"uuid", 
+      "id":"uuid3", 
              "email": "admin@gmail.com",
              "password": "pas",
              "phone": "998940850818",
@@ -84,7 +84,7 @@
                "salary": "2000"
    },
    {
-    "id":"uuid", 
+    "id":"uuid4", 
            "email": "admin@gmail.com",
            "password": "pas",
            "phone": "998940850818",

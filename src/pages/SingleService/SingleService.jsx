@@ -44,57 +44,56 @@ const SingleService = () => {
 
 
 
-
-
   // send for data bot started
 
-  const [addedItems, setAddedItems] = useState([]);
+  const [doctorId, setDoctorId] = useState();
 
 
-	const onSendData = useCallback(() => {
-		const data = {
-			products: addedItems,
-			totalPrice: getTotalPrice(addedItems),
-			queryId,
-		};
-        console.log(data);
-		fetch('http://localhost:8000/web-data', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-			},
-			body: JSON.stringify(data),
-		});
-	}, [addedItems]);
+	// const onSendData = useCallback(() => {
+	// 	const data = {
+  //     doctorId
+	// 	};
+  //       console.log(data);
+	// 	fetch('http://localhost:8000/web-data', {
+	// 		method: 'POST',
+	// 		headers: {
+	// 			'Content-Type': 'application/json',
+	// 		},
+	// 		body: JSON.stringify(data),
+	// 	});
+	// }, [doctorId]);
 
-	useEffect(() => {
-		tg.onEvent('mainButtonClicked', onSendData);
-		return () => {
-			tg.offEvent('mainButtonClicked', onSendData);
-		};
-	}, [onSendData]);
 
-	const onAdd = (product) => {
-		const alreadyAdded = addedItems.find((item) => item.id === product.id);
-		let newItems = [];
 
-		if (alreadyAdded) {
-			newItems = addedItems.filter((item) => item.id !== product.id);
-		} else {
-			newItems = [...addedItems, product];
-		}
+  const onSendData = useCallback(() => {
+    const data = {
+      doctorId
+    }
+    tg.sendData(JSON.stringify(data));
+}, [doctorId])
 
-		setAddedItems(newItems);
+useEffect(() => {
+  tg.onEvent('mainButtonClicked', onSendData)
+  return () => {
+      tg.offEvent('mainButtonClicked', onSendData)
+  }
+}, [onSendData])
 
-		if (newItems.length === 0) {
-			tg.MainButton.hide();
-		} else {
-			tg.MainButton.show();
-			tg.MainButton.setParams({
-				text: `Sotib olish ${getTotalPrice(newItems)}`,
-			});
-		}
-	};
+useEffect(() => {
+  tg.MainButton.setParams({
+      text: 'Malumotlarni yuborish'
+  })
+}, [])
+
+// useEffect(() => {
+//   if(!street || !country) {
+//       tg.MainButton.hide();
+//   } else {
+//       tg.MainButton.show();
+//   }
+// }, [country, street])
+
+
 
 
 
@@ -193,7 +192,7 @@ const SingleService = () => {
 											</p>
 										</div>
 
-                    <button className=' w-[100%] py-[15px] bg-[teal] text-[20px]  rounded-[8px] ' > Reservation </button>
+                    <button className=' w-[100%] py-[15px] bg-[teal] text-[20px]  rounded-[8px] ' onClick={()=>setDoctorId(el?.id)} > Reservation </button>
 									</div>
 								</div>
 						  ))
