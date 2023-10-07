@@ -18,7 +18,7 @@ function App() {
   }, []);
 
   return (
-    <div className="App w-[100%] px-[10px] ">
+    <div className="App w-[100%]  mx-auto sm:w-[50%] px-[10px] ">
       <Header />
       <Routes>
         <Route path="/" element={<ClinictList />} />

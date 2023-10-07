@@ -42,7 +42,7 @@ const SingleClinic = () => {
 
 	console.log(clinic_id, 'id');
 	return (
-		<section className='w-[100%]  mx-auto sm:w-[50%]' key={data.id}>
+		<section className='' key={data.id}>
 			<div className='clinic_box'>
 				<h2 className=' text-center font-semibold my-[20px] text-[32px] '>
 					Clicika haqida batafsil

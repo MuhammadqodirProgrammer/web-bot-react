@@ -79,7 +79,7 @@ const ClinictList = () => {
 	};
 
 	return (
-		<div className={'w-[100%]  mx-auto sm:w-[50%]  '}>
+		<div className={'  '}>
 
 
 

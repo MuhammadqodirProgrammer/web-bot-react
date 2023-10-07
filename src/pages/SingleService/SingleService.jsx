@@ -103,15 +103,6 @@ const SingleService = () => {
 
   return (
     <>
-
-
-
-
-
-
-
-
-
 					<h2 className=' text-center font-semibold my-[20px] text-[32px] '>
 						Biznig hizmatlarni tanlang va joy band qiling
 					</h2>
@@ -158,7 +149,7 @@ const SingleService = () => {
 				<div className='  flex items-center gap-[20px] py-[20px] my-[20px]  flex-wrap pb-[50px]  relative '>
 					{doctors?.length
 						? doctors.map((el) => (
-								<div className='card  h-auto min-h-[300px] w-[100%] border-2 border-[teal] rounded-[8px] overflow-hidden  '>
+								<div className='card  h-auto min-h-[300px] w-[100%] border-2 border-[teal] rounded-[8px] overflow-hidden  '  key={el?.id} >
 									<div className='card_top '>
 										<img
 											src={el?.img}

@@ -3,7 +3,7 @@ import "./clinic.scss";
 
 export default function Clinic() {
   return (
-    <div className="w-[100%]  mx-auto sm:w-[50%]">
+    <div className="">
       <h1 className="text-[35px] font-semibold">CLINIC</h1>
       <div>
         <div>
