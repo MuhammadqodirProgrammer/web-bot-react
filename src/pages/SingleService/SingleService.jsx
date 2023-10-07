@@ -85,11 +85,11 @@ useEffect(() => {
   })
 }, [])
 
+      tg.MainButton.show();
 // useEffect(() => {
 //   if(!street || !country) {
 //       tg.MainButton.hide();
 //   } else {
-//       tg.MainButton.show();
 //   }
 // }, [country, street])
 
