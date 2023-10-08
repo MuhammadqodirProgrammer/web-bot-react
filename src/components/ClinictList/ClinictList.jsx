@@ -102,7 +102,7 @@ const ClinictList = () => {
           </div>
         </div> )
 	) :<h2 className=" text-center  w-[100%] font-semibold my-[20px] text-[24px] ">
-	no services ☹ 
+	no clinics ☹ 
         </h2> 
 	
 }
