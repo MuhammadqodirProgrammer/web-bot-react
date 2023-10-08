@@ -14,7 +14,7 @@ import jobIcon from "../../assets/images/job.png"
 import doctorIcon from "../../assets/images/doctor2.png"
 import serviceIcon from "../../assets/images/service.png"
 import datamy from "../../db/clinic.json";
-import apiRoot from '../../api/api';
+import apiRoot, { baseUrlImg } from '../../api/api';
 
 
 
@@ -62,7 +62,7 @@ const ClinictList = () => {
 		clinics.map(el =><div className=" min-w-[95%]  min-h-[300px] border-2 border-[teal] rounded-[8px] overflow-hidden  ">
           <div className="card_top ">
             <img
-              src={el?.img}
+              src={`${baseUrlImg}/${el?.img}`}
               alt="img"
               className="w-[100%] h-[230px] object-cover "
             />

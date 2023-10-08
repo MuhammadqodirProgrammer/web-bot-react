@@ -3,13 +3,10 @@ import { useParams } from 'react-router-dom';
 import { Pagination } from '../../components/Pagination/Pagination';
 import { FaPhone } from 'react-icons/fa';
 import { FaCalendarWeek } from 'react-icons/fa';
-import { MdLocationPin } from 'react-icons/md';
-import { BiSolidTimeFive } from 'react-icons/bi';
 import { useTelegram } from '../../hooks/useTelegram';
-
-import jobIcon from '../../assets/images/job.png';
-import doctorIcon from '../../assets/images/doctor2.png';
-import serviceIcon from '../../assets/images/service.png';
+// tostifiy
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import datamy from '../../db/clinic.json';
 import { Modal } from '../../components/Modal/Modal.jsx';
@@ -28,12 +25,17 @@ const SingleService = () => {
 	const [clinicDoctors, setClinicDoctors] = useState([]);
 	const [clinicServices, setClinicServices] = useState([]);
 
-
+// login refs
 	const nameRef = useRef();
 	const emailRef = useRef();
 	const pasRef = useRef();
 	const phoneRef = useRef();
 	const imgRef = useRef();
+// my toasts
+	const orderSuccess = () => toast("You have successfully   booked ");
+	const orderFaild = () => toast("Wow somthing went wrong!");
+	const registerToast = () => toast(" You have successfully registered");
+	const testToast = () => toast(" test");
 
 
 	const { service_id, clinic_id } = useParams();
@@ -48,6 +50,20 @@ const SingleService = () => {
 	}, []);
 
 	const { tg, queryId } = useTelegram();
+
+	console.log(tg ,"tg");
+	window.Telegram.WebApp.onEvent('hello', (event) => {
+		// Botdan kelgan yangi xabar tadbiri
+		const message = event.message.text;
+		testToast()
+		// Xabarni boshqarish uchun kerakli ishlar
+		console.log('Yangi xabar:', message);
+	
+		// Botdan kelgan xabar uchun javob yuborish
+		const response = "Xabar qabul qilindi. Rahmat!";
+		window.Telegram.WebApp.sendMessage(response);
+	});
+	
 
 	const [doctorId, setDoctorId] = useState();
 
@@ -100,6 +116,13 @@ const SingleService = () => {
 			const resp = await apiRoot.post("/order" , data);
 
 			console.log(resp ,"resp");
+
+			if(resp.status ==201){
+				orderSuccess()
+				setOrderModal(false)
+			} else {
+				orderFaild()
+			}
 		}
 
 		console.log(time, date);
@@ -119,14 +142,13 @@ const data =await apiRoot.post("patient" ,formData)
 
 if(data.status ==201)
 {
-
+	registerToast()
 setOrderModal(true)
 setLoginModal(false)
 
 const user = data.data?.user 
 localStorage.setItem("user_id" ,user._id)
  setUserId(user._id)
-
 console.log(user);
 
 }
@@ -351,6 +373,8 @@ console.log(user);
 					</form>
 				</div>
 			</Modal>
+
+			<ToastContainer />
 		</>
 	);
 };

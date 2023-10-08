@@ -1,16 +1,16 @@
 
 import axios from "axios";
 const token = localStorage.getItem("token");
-export const baseUrlImg = "http://localhost:4000";
-export const baseUrl = "http://localhost:4000";
+export const baseUrlImg = "https://sqwdsfgb.onrender.com";
+export const baseUrl = "https://sqwdsfgb.onrender.com";
 // const apiRoot = axios.create({
-//   baseURL: `http://localhost:4000`,
+//   baseURL: `https://sqwdsfgb.onrender.com`,
 //   // headers:{
 //   //   Authorization: `Bearer ${token}`,
 //   // }
 // });
 const apiRoot = axios.create({
-  baseURL: "http://localhost:4000",
+  baseURL: "https://sqwdsfgb.onrender.com",
   headers: {
     ["Authorization"]: `Bearer ${token}`,
   },
