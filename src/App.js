@@ -23,7 +23,7 @@ function App() {
       <Routes>
         <Route path="/" element={<ClinictList />} />
         <Route path="clinic/:clinic_id" element={<SingleClinic />} />
-        <Route path="clinic/:id/service/:service_id" element={<SingleService />} />
+        <Route path="clinic/:clinic_id/service/:service_id" element={<SingleService />} />
         <Route path="clinic" element={<Clinic />} />
         <Route path={"admin"} element={<Admin />} />
 

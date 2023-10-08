@@ -14,69 +14,31 @@ import jobIcon from "../../assets/images/job.png"
 import doctorIcon from "../../assets/images/doctor2.png"
 import serviceIcon from "../../assets/images/service.png"
 import datamy from "../../db/clinic.json";
+import apiRoot from '../../api/api';
 
-const products = [
-	{ id: '1', name: 'eshmat clinck', img: "https://qtxasset.com/quartz/qcloud5/media/image/fiercehealthcare/1598464584/Mayo%20Clinic%20logo.jpg/Mayo%20Clinic%20logo.jpg?VersionId=jVFvD2Xe_AYZKxIPgig..j8eMTZ9ijsA", phone: "940850818",location:"Tashket",workingDays: "du chor ju", workingHours:"10:00-18:00" },
-	{ id: '2', name: 'Shifo clinck', img: "https://qtxasset.com/quartz/qcloud5/media/image/fiercehealthcare/1598464584/Mayo%20Clinic%20logo.jpg/Mayo%20Clinic%20logo.jpg?VersionId=jVFvD2Xe_AYZKxIPgig..j8eMTZ9ijsA", phone: "940850818",location:"Tashket",workingDays: "du chor ju", workingHours:"10:00-18:00" },
 
-];
-
-const getTotalPrice = (items = []) => {
-	return items.reduce((acc, item) => {
-		return (acc += item.price);
-	}, 0);
-};
 
 const ClinictList = () => {
 	const [activePage, setActivePage] = useState(1);
-	const [addedItems, setAddedItems] = useState([]);
+	const [totalPage, setTotalPage] = useState(1);
+	const [clinics, setClinics] = useState([]);
 
-	const { tg, queryId } = useTelegram();
 
-	const onSendData = useCallback(() => {
-		const data = {
-			products: addedItems,
-			totalPrice: getTotalPrice(addedItems),
-			queryId,
-		};
-        console.log(data);
-		fetch('http://localhost:8000/web-data', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-			},
-			body: JSON.stringify(data),
-		});
-	}, [addedItems]);
+	
+	async function GetClinics() {
+		const data = await apiRoot.get(`/clinic/skip=${activePage}/limit=${4}`)
+
+		if(data.status ==200){
+			console.log(data?.data);
+			setClinics(data?.data?.data)
+			setTotalPage(data?.data?.total_page)
+		}
+	}
 
 	useEffect(() => {
-		tg.onEvent('mainButtonClicked', onSendData);
-		return () => {
-			tg.offEvent('mainButtonClicked', onSendData);
-		};
-	}, [onSendData]);
+		GetClinics()
+	}, [activePage]);
 
-	const onAdd = (product) => {
-		const alreadyAdded = addedItems.find((item) => item.id === product.id);
-		let newItems = [];
-
-		if (alreadyAdded) {
-			newItems = addedItems.filter((item) => item.id !== product.id);
-		} else {
-			newItems = [...addedItems, product];
-		}
-
-		setAddedItems(newItems);
-
-		if (newItems.length === 0) {
-			tg.MainButton.hide();
-		} else {
-			tg.MainButton.show();
-			tg.MainButton.setParams({
-				text: `Sotib olish ${getTotalPrice(newItems)}`,
-			});
-		}
-	};
 
 	return (
 		<div className={'  '}>
@@ -94,10 +56,10 @@ const ClinictList = () => {
 
 
 
-<div className="  flex items-center  justify-center gap-[20px] py-[20px] my-[20px]  flex-wrap pb-[50px]  relative ">
+<div className="  flex items-center  justify-center gap-[20px] py-[20px] my-[20px]  flex-wrap mb-[0px]  relative ">
 {
-	products?.length ? (
-		products.map(el =><div className=" min-w-[45%]  min-h-[300px] border-2 border-[teal] rounded-[8px] overflow-hidden  ">
+	clinics?.length ? (
+		clinics.map(el =><div className=" min-w-[95%]  min-h-[300px] border-2 border-[teal] rounded-[8px] overflow-hidden  ">
           <div className="card_top ">
             <img
               src={el?.img}
@@ -134,18 +96,20 @@ const ClinictList = () => {
 
 		
 			
-			<Link to={`clinic/${el?.id}`} className="more text-center  " >
+			<Link to={`clinic/${el?._id}`} className="more text-center  " >
          More
         </Link>
           </div>
         </div> )
-	) :" no services ☹"
+	) :<h2 className=" text-center  w-[100%] font-semibold my-[20px] text-[24px] ">
+	no services ☹ 
+        </h2> 
 	
 }
 <Pagination
         activePage={activePage}
         setActivePage={setActivePage}
-        totalPage={5}
+        totalPage={totalPage}
 		
       />
 </div>
