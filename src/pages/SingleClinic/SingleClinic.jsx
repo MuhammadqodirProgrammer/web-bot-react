@@ -34,10 +34,10 @@ const SingleClinic = () => {
 	const [clinic, setClinic] = useState([]);
 	const [clinicDoctors, setClinicDoctors] = useState([]);
 	const [clinicServices, setClinicServices] = useState([]);
-	const { clinic_id } = useParams();
+	const { clinic_id  ,patient_id} = useParams();
 	const limit = 5;
 
-
+console.log(clinic_id ,"clinic_id");
 	const total_page = Math.ceil(clinicDoctors.length / limit);
 	async function GetClinic() {
 		const data = await apiRoot.get(

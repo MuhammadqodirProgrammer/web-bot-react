@@ -1,8 +1,5 @@
 import React, { useState } from 'react';
-import ProductItem from '../ProductItem/ProductItem';
-import { useTelegram } from '../../hooks/useTelegram';
 import { useCallback, useEffect } from 'react';
-import { Pagination } from '../Pagination/Pagination';
 import { Link, Outlet, useParams } from "react-router-dom";
 
 import { FaPhone } from "react-icons/fa";
@@ -10,21 +7,21 @@ import { FaCalendarWeek } from "react-icons/fa";
 import { MdLocationPin } from "react-icons/md";
 import { BiSolidTimeFive } from "react-icons/bi";
 
-import jobIcon from "../../assets/images/job.png"
-import doctorIcon from "../../assets/images/doctor2.png"
-import serviceIcon from "../../assets/images/service.png"
-import datamy from "../../db/clinic.json";
 import apiRoot, { baseUrlImg } from '../../api/api';
+import { Pagination } from '../../components/Pagination/Pagination';
 
 
 
-const ClinictList = () => {
+const Patient = () => {
 	const [activePage, setActivePage] = useState(1);
 	const [totalPage, setTotalPage] = useState(1);
 	const [clinics, setClinics] = useState([]);
+	const [patient, setPatient] = useState({});
 
 
-	
+ const { patient_id}  = useParams()
+
+ console.log(patient_id ,"patient");
 	async function GetClinics() {
 		const data = await apiRoot.get(`/clinic/skip=${activePage}/limit=${4}`)
 
@@ -35,6 +32,20 @@ const ClinictList = () => {
 		}
 	}
 
+    async function GetPatient() {
+		const data = await apiRoot.get(`/patient/${patient_id}`)
+		if(data.status ==200){
+			console.log(data?.data?.data);
+            setPatient(data?.data?.data)
+			// setClinics(data?.data?.data)
+			// setTotalPage(data?.data?.total_page)
+		}
+	}
+
+    useEffect(() => {
+        GetPatient()
+    }, []);
+
 	useEffect(() => {
 		GetClinics()
 	}, [activePage]);
@@ -44,11 +55,46 @@ const ClinictList = () => {
 		<div className={'  '}>
 
 
+<h2 className=" text-center font-semibold my-[20px] text-[26px] ">
+          Your information 
+        </h2>
+
+
+<div className=" min-w-[95%]  min-h-[300px] border-2 border-[teal] rounded-[8px] overflow-hidden  ">
+          <div className="card_top ">
+            <img
+              src={`${baseUrlImg}/${patient?.img}`}
+              alt="img"
+              className="w-[100%] h-[230px] object-cover "
+            />
+          </div>
+          <div className="card_body  py-[15px] px-[10px] ">
+            <h2 className=" text-[28px]  font-semibold mb-3 ">{patient?.fullName}</h2>
+            <div className="flex items-center mb-3  gap-x-[15px]">
+              <FaPhone className=" w-[20px] h-[20px]  " />
+              <p class=" font-normal text-[22px] dark:text-gray-400">
+                Tel:{patient?.phone}
+              </p>
+            </div>
+       
+            <div className="flex items-center mb-3  gap-x-[15px]">
+              <FaCalendarWeek className=" w-[20px] h-[20px]  " />
+              <p class=" font-normal text-[22px] dark:text-gray-400">
+                {patient?.email}
+              </p>
+            </div>
+         
+
+		
+			
+		
+          </div>
+        </div>
 
 
 
-<h2 className=" text-center font-semibold my-[20px] text-[32px] ">
-          Our clinics
+<h2 className=" text-center font-semibold my-[20px] text-[22px] ">
+          Our clinics , enter the clinic, choose a service and book a place
         </h2>
 
         
@@ -96,7 +142,7 @@ const ClinictList = () => {
 
 		
 			
-			<Link to={`clinic/${el?._id}`} className="more text-center  " >
+			<Link to={`clinic/${el?._id}`} className=' items-center w-[100%] block text-[20px]   py-2  font-medium text-center  text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300  mx-auto ' >
          More
         </Link>
           </div>
@@ -154,4 +200,4 @@ const ClinictList = () => {
 	);
 };
 
-export default ClinictList;
+export default Patient;

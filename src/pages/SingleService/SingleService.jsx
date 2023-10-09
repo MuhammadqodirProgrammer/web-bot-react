@@ -23,6 +23,7 @@ const SingleService = () => {
 	const [totalPage, setTotalPage] = useState(1);
 	const [userId, setUserId] = useState();
 	const [clinicDoctors, setClinicDoctors] = useState([]);
+	const [order, setOrder] = useState([]);
 	const [clinicServices, setClinicServices] = useState([]);
 
 // login refs
@@ -38,8 +39,7 @@ const SingleService = () => {
 	const testToast = () => toast(" test");
 
 
-	const { service_id, clinic_id } = useParams();
-	const patientId =localStorage.getItem("user_id")
+	const { service_id, clinic_id ,patient_id } = useParams();
 
 	useEffect(() => {
 		(async () => {
@@ -49,20 +49,9 @@ const SingleService = () => {
 		// }, [api]);
 	}, []);
 
-	const { tg, queryId } = useTelegram();
 
-	console.log(tg ,"tg");
-	window.Telegram.WebApp.onEvent('hello', (event) => {
-		// Botdan kelgan yangi xabar tadbiri
-		const message = event.message.text;
-		testToast()
-		// Xabarni boshqarish uchun kerakli ishlar
-		console.log('Yangi xabar:', message);
+
 	
-		// Botdan kelgan xabar uchun javob yuborish
-		const response = "Xabar qabul qilindi. Rahmat!";
-		window.Telegram.WebApp.sendMessage(response);
-	});
 	
 
 	const [doctorId, setDoctorId] = useState();
@@ -86,7 +75,6 @@ const SingleService = () => {
 			);
 			setClinicDoctors(serviceDoctors);
 
-			console.log(serviceDoctors, 'serviceDoctors');
 		}
 	}
 
@@ -94,10 +82,13 @@ const SingleService = () => {
 		GetService();
 		GetDoctors();
 	}, [activePage]);
+	const orders = JSON.parse(localStorage.getItem("order"))
 
 	const handleSubmit = async (evt) => {
 		evt.preventDefault();
 
+
+console.log(orders ,"orders");
 		if (!date) {
 			alert('Pleace select  date ');
 		} else if (!time) {
@@ -109,17 +100,33 @@ const SingleService = () => {
 				serviceID:service_id,
 				clinicID:clinic_id,
 				doctorID:doctorId,
-				patientID:userId,
+				patientID:patient_id,
 			}
 			console.log(data);
 
 			const resp = await apiRoot.post("/order" , data);
 
-			console.log(resp ,"resp");
+			console.log(resp?.data ,"order data");
 
 			if(resp.status ==201){
 				orderSuccess()
 				setOrderModal(false)
+				 const doctorOne = clinicDoctors.filter(el => {
+					console.log(el?._id ==doctorId)
+					return el?._id ==doctorId
+				})
+				console.log(doctorOne,"doctorOne");
+				const myData ={
+					doctorName:doctorOne[0]?.fullName,
+					doctorPhone:doctorOne[0]?.phone,
+					doctorWorkDays:doctorOne[0]?.workingDays + " " +doctorOne[0]?.workingHours,
+					scheduledDay:data?.scheduledDay,
+					scheduledHour:data?.scheduledHour,
+				}
+				setOrder([...order ,myData])
+console.log([...order ,myData] ,"order last");
+
+				localStorage.setItem("order" , JSON.stringify([...order ,myData]))
 			} else {
 				orderFaild()
 			}
@@ -153,6 +160,8 @@ console.log(user);
 
 }
 	};
+
+	console.log(orders ,"orders tashqari");
 
 	return (
 		<>
@@ -191,7 +200,7 @@ console.log(user);
 				Clinic Doctors
 			</h2>
 
-			<div className='  flex items-center gap-[20px] py-[20px] my-[20px]  flex-wrap pb-[50px]  relative '>
+			<div className='  flex items-center gap-[20px] py-[20px] my-[20px]  flex-wrap pb-[20px]  relative '>
 				{clinicDoctors?.length
 					? clinicDoctors.map((el) => (
 							<div
@@ -227,7 +236,7 @@ console.log(user);
 										className=' w-[100%] py-[15px] bg-[teal] text-[20px]  rounded-[8px] '
 										onClick={() =>{
 											setDoctorId(el?._id)
-											patientId ? (setOrderModal(true)) :setLoginModal(true)
+											patient_id ? (setOrderModal(true)) :setLoginModal(true)
 									
 										} }
 									>
@@ -242,6 +251,59 @@ console.log(user);
 </div>}
 			
 			</div>
+
+
+
+
+
+
+
+
+			<h2 className=' text-center font-semibold my-[20px] text-[32px] '>
+				Your orders
+			</h2>
+
+<div className="flex items-center justify-center flex-col  gap-3 ">
+
+{
+	orders?.length  ? (
+		orders.map( el=><div className='max-w-sm  min-w-[100%]  border-[1px] border-[teal] rounded-[8px] shadow '>
+						
+							<div className='p-3'>
+
+							<p className='mb-3 font-bold text-[18px] text-white'>
+								scheduledDay : {el?.scheduledDay} 
+								</p>
+								<p className='mb-3 font-bold text-[18px] text-white'>
+								scheduledHour : {el?.scheduledHour} 
+								</p>
+								<p className='mb-3 font-normal text-[18px] text-white '>
+								doctor name	{el?.doctorName}
+								</p>
+
+								<p className='mb-3 font-normal text-[18px] text-white '>
+								doctor Phone: {el?.doctorPhone}
+								</p>
+								<p className='mb-3 font-normal text-[18px] text-white'>
+								doctor time : {el?.doctorWorkDays} 
+								</p>
+								
+							</div>
+						</div>)
+	) : " orderlar yoq "
+}
+
+
+
+</div>
+
+
+
+
+
+
+
+
 {/* register modal */}
 
 
