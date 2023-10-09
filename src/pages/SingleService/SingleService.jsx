@@ -12,6 +12,10 @@ import datamy from '../../db/clinic.json';
 import { Modal } from '../../components/Modal/Modal.jsx';
 import apiRoot, { baseUrlImg } from '../../api/api';
 
+import clinicImg from '../../assets/images/clinic2.png';
+import serviseImg from '../../assets/images/service1.png';
+import DoctorImg from '../../assets/images/docrorImg.png';
+
 const SingleService = () => {
 	const [activePage, setActivePage] = useState(1);
 	const [data, setData] = useState([]);
@@ -173,8 +177,8 @@ console.log(user);
 						<div className='max-w-sm  min-w-[100%]  border-[1px] border-[teal] rounded-[8px] shadow '>
 							<a href='#'>
 								<img
-									className='rounded-t-lg w-[100%] h-[150px] object-fill  '
-									src={`${baseUrlImg}/${clinicServices?.img}`}
+									className='rounded-t-lg w-[100%] h-[150px] object-contain mt-2  '
+									src={serviseImg}
 									alt='img'
 								/>
 							</a>
@@ -209,9 +213,9 @@ console.log(user);
 							>
 								<div className='card_top '>
 									<img
-										src={`${baseUrlImg}/${el?.img}`}
+										src={serviseImg}
 										alt='img'
-										className='w-[100%] h-[230px] object-cover '
+										className='w-[100%] h-[230px] object-contain mt-2 '
 									/>
 								</div>
 								<div className='card_body  py-[15px] px-[10px] '>
