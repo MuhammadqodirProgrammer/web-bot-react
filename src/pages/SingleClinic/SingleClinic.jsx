@@ -11,10 +11,11 @@ import { useCallback, useEffect } from 'react';
 import { Outlet, useParams } from 'react-router-dom';
 import './SingleClinic.scss';
 
-
 import { useHistory } from 'react-router-dom';
 
-
+import clinicImg from '../../assets/images/clinic2.png';
+import serviseImg from '../../assets/images/service1.png';
+import DoctorImg from '../../assets/images/docrorImg.png';
 
 // images and icons
 import { FaPhone } from 'react-icons/fa';
@@ -36,10 +37,10 @@ const SingleClinic = () => {
 	const [clinic, setClinic] = useState([]);
 	const [clinicDoctors, setClinicDoctors] = useState([]);
 	const [clinicServices, setClinicServices] = useState([]);
-	const { clinic_id  ,patient_id} = useParams();
+	const { clinic_id, patient_id } = useParams();
 	const limit = 5;
 
-console.log(clinic_id ,"clinic_id");
+	console.log(clinic_id, 'clinic_id');
 	const total_page = Math.ceil(clinicDoctors.length / limit);
 	async function GetClinic() {
 		const data = await apiRoot.get(
@@ -70,9 +71,9 @@ console.log(clinic_id ,"clinic_id");
 				<div className='card  min-h-[300px] border-2 border-[teal] rounded-[8px] overflow-hidden  '>
 					<div className='card_top '>
 						<img
-							src={`${baseUrlImg}/${clinic?.img}`}
+							src={clinicImg}
 							alt='img'
-							className='w-[100%] h-[230px] object-cover '
+							className='w-[100%] h-[230px] object-contain mt-2 '
 						/>
 					</div>
 					<div className='card_body  py-[15px] px-[10px] '>
@@ -155,7 +156,7 @@ console.log(clinic_id ,"clinic_id");
 										<a href='#'>
 											<img
 												className='rounded-t-lg w-[100%] h-[150px] object-fill  '
-												src={`${baseUrlImg}/${el?.img}`}
+												src={serviseImg}
 												alt='img'
 											/>
 										</a>
@@ -192,9 +193,14 @@ console.log(clinic_id ,"clinic_id");
 								</SwiperSlide>
 							))
 						) : (
-							<div className="inline-block h-12 w-12 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] text-neutral-100 motion-reduce:animate-[spin_1.5s_linear_infinite]" role="status">
-  <span className="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]">Loading...</span>
-</div>
+							<div
+								className='inline-block h-12 w-12 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] text-neutral-100 motion-reduce:animate-[spin_1.5s_linear_infinite]'
+								role='status'
+							>
+								<span className='!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]'>
+									Loading...
+								</span>
+							</div>
 						)}
 					</Swiper>
 				</div>
@@ -210,9 +216,9 @@ console.log(clinic_id ,"clinic_id");
 							<div className='card  h-auto min-h-[300px] w-[100%] border-2 border-[teal] rounded-[8px] overflow-hidden  '>
 								<div className='card_top ' key={el?._id}>
 									<img
-										src={`${baseUrlImg}/${el?.img}`}
+										src={DoctorImg}
 										alt='img'
-										className='w-[100%] h-[230px] object-cover '
+										className='w-[100%] h-[230px] object-contain mt-2 '
 									/>
 								</div>
 								<div className='card_body  py-[15px] px-[10px] '>
@@ -237,9 +243,14 @@ console.log(clinic_id ,"clinic_id");
 							</div>
 						))
 					) : (
-						<div className="inline-block h-12 w-12 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] text-neutral-100 motion-reduce:animate-[spin_1.5s_linear_infinite]" role="status">
-  <span className="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]">Loading...</span>
-</div>
+						<div
+							className='inline-block h-12 w-12 animate-spin rounded-full border-4 border-solid border-current border-r-transparent align-[-0.125em] text-neutral-100 motion-reduce:animate-[spin_1.5s_linear_infinite]'
+							role='status'
+						>
+							<span className='!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]'>
+								Loading...
+							</span>
+						</div>
 					)}
 					<Pagination
 						activePage={activePage}
@@ -248,7 +259,6 @@ console.log(clinic_id ,"clinic_id");
 					/>
 				</div>
 			</div>
-			
 		</section>
 	);
 };
