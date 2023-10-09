@@ -65,7 +65,7 @@ const SingleClinic = () => {
 		<section className='' key={data._id}>
 			<div className='clinic_box'>
 				<h2 className=' text-center font-semibold my-[20px] text-[32px] '>
-					Clicika haqida batafsil
+				More about Clicika
 				</h2>
 
 				<div className='card  min-h-[300px] border-2 border-[teal] rounded-[8px] overflow-hidden  '>

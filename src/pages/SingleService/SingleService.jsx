@@ -170,7 +170,7 @@ console.log(user);
 	return (
 		<>
 			<h2 className=' text-center font-semibold my-[20px] text-[32px] '>
-				Choose our service and booking
+				Choose  doctors and booking
 			</h2>
 
 			
