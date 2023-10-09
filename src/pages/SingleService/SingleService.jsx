@@ -247,7 +247,7 @@ console.log(user);
 
 			<Modal
 				width={'90%'}
-				title={'Navbat olish'}
+				title={'Register'}
 				modal={loginModal}
 				setModal={setLoginModal}
 			>
