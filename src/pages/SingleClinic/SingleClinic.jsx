@@ -135,7 +135,7 @@ const SingleClinic = () => {
 
 				<div className='mt-[80px]  '>
 					<h2 className=' text-center font-semibold my-[20px] text-[32px] '>
-						Biznig hizmatlarni tanlang va joy band qiling
+						Choose our service
 					</h2>
 
 					<Swiper
