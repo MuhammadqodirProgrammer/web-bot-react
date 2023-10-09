@@ -8,6 +8,8 @@ import apiRoot, { baseUrlImg } from '../../api/api';
 import { useParams } from "react-router-dom";
 
 import {BsFillCheckCircleFill} from "react-icons/bs"
+import doctorImg from "../../assets/images/docrorImg.png"
+
 export default function Doctor() {
 	const [loginModal, setLoginModal] = useState(false);
 	const [orders, setOrders] = useState([]);
@@ -46,11 +48,12 @@ console.log(doctor_id);
 		evt.preventDefault();
 
 	
-const data = apiRoot.put(`/order/${orderId}` ,{ status:"checked"})
+const data = await apiRoot.put(`/orderStatus/${orderId}`)
 console.log(data ,"data");
-if(data.status ==201)
+if(data?.status ==200)
 {
 	loginToast()
+  setLoginModal(false)
 }
 	};
 
@@ -63,9 +66,9 @@ console.log(orderId ,"orderId");
         <div>
           <div className="border border-[grey] p-5 shadow rounded-lg">
             <img
-              src={`${baseUrlImg}/${doctorInfo?.img}`}
+              src={doctorImg}
               alt="pic"
-              className="w-full  object-cover mb-3 h-[250px] rounded-md"
+              className="w-full  object-contain bg-white mb-3 h-[250px] rounded-md"
             />
             <h3  className=" font-semibold " > { doctorInfo?.fullName }</h3>
             <p  className=" my-[5px] " >Phone: { doctorInfo?.phone }</p>
@@ -146,17 +149,25 @@ console.log(orderId ,"orderId");
 
       <Modal
 				width={'90%'}
-				title={'Register'}
+				title={' You are check this patient'}
 				modal={loginModal}
 				setModal={setLoginModal}
 			>
 				<div className=' '>
-					<form className='bg-white  rounded pb-3 ' onSubmit={CreatePatient}>
+					<form className='bg-white  rounded pb-3 flex items-center justify-center gap-x-4 ' onSubmit={CreatePatient}>
 						<button
 							type='submit'
-							className='bg-blue-500 w-full hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'
+							className='bg-blue-500   hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'
 						>
 							Submit
+						</button>
+            <button
+							type='button'
+							className='bg-red-500   hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline'
+
+              onClick={()=>setLoginModal(false)}
+						>
+							Censel
 						</button>
 					</form>
 				</div>
