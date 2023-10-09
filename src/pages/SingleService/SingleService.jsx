@@ -213,7 +213,7 @@ console.log(user);
 							>
 								<div className='card_top '>
 									<img
-										src={serviseImg}
+										src={DoctorImg}
 										alt='img'
 										className='w-[100%] h-[230px] object-contain mt-2 '
 									/>
